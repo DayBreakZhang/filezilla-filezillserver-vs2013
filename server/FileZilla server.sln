@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileZilla Server Interface", "Interface\FileZilla Server Interface.vcxproj", "{516E796E-D29F-4340-9327-FACC9E45C828}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileZilla Server", "FileZilla server.vcxproj", "{45702DF1-B087-4692-9E2A-2F65133A7539}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{516E796E-D29F-4340-9327-FACC9E45C828}.Debug|Win32.ActiveCfg = Debug|Win32
+		{516E796E-D29F-4340-9327-FACC9E45C828}.Debug|Win32.Build.0 = Debug|Win32
+		{516E796E-D29F-4340-9327-FACC9E45C828}.Release|Win32.ActiveCfg = Release|Win32
+		{516E796E-D29F-4340-9327-FACC9E45C828}.Release|Win32.Build.0 = Release|Win32
+		{45702DF1-B087-4692-9E2A-2F65133A7539}.Debug|Win32.ActiveCfg = Debug|Win32
+		{45702DF1-B087-4692-9E2A-2F65133A7539}.Debug|Win32.Build.0 = Debug|Win32
+		{45702DF1-B087-4692-9E2A-2F65133A7539}.Release|Win32.ActiveCfg = Release|Win32
+		{45702DF1-B087-4692-9E2A-2F65133A7539}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

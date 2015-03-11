@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>FileZilla Server</ProjectName>
+    <ProjectGuid>{45702DF1-B087-4692-9E2A-2F65133A7539}</ProjectGuid>
+    <RootNamespace>Service</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="Dependencies.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>E:\ftp\zlib\lib;E:\ftp\openssl\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\ftp\zlib\include;E:\ftp\openssl\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FileZilla server.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <PreprocessorDefinitions>ZLIB_WINAPI;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>true</MinimalRebuild>
+    </ClCompile>
+    <ResourceCompile />
+    <PreLinkEvent />
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <DataExecutionPrevention />
+      <AdditionalDependencies>version.lib;ws2_32.lib;zlibwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:\ftp\zlib\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent />
+    <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>rem Copy ssleay32.dll and libeay32.dll from openssl lib directory to output directory
+
+CALL:copyChanged "$(openssl_lib)\ssleay32.dll" "$(OUTDIR)\ssleay32.dll"
+CALL:copyChanged "$(openssl_lib)\libeay32.dll" "$(OUTDIR)\libeay32.dll"
+CALL:copyChanged "$(openssl_lib)\ssleay32.pdb" "$(OUTDIR)\ssleay32.pdb" 1
+CALL:copyChanged "$(openssl_lib)\libeay32.pdb" "$(OUTDIR)\libeay32.pdb" 1
+
+GOTO:EOF
+
+:copyChanged
+
+SET SOURCE=%1
+SET TARGET=%2
+
+IF "%3" == "1" IF NOT EXIST %SOURCE% GOTO:EOF
+
+FOR %%i IN (%SOURCE%) DO SET SOURCEDATE=%%~ti
+FOR %%i IN (%TARGET%) DO SET TARGETDATE=%%~ti
+
+IF "%SOURCEDATE%"=="%TARGETDATE%" GOTO:EOF
+copy /B /Y %SOURCE% %TARGET%
+IF ERRORLEVEL 1 (
+  echo Could not copy %SOURCE% to %TARGET%
+  EXIT 1
+)
+
+GOTO:EOF
+</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>if EXIST "$(OutDir)FileZilla Server.exe" "$(OutDir)FileZilla Server.exe" /stop
+if EXIST "$(OutDir)FileZilla Server.exe" "$(OutDir)FileZilla Server.exe" /compat /stop
+if EXIST "$(OutDir)FileZilla Server.exe" "$(OutDir)FileZilla Server.exe" /uninstall
+EXIT 0</Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>Terminate service...</Message>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>"$(OutDir)FileZilla Server.exe" /stop
+"$(OutDir)FileZilla Server.exe" /uninstall
+EXIT 0</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/FileZilla server.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <PreprocessorDefinitions>ZLIB_WINAPI;WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ResourceCompile />
+    <Link>
+      <AdditionalDependencies>zlibstat.lib;version.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <DataExecutionPrevention />
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PreBuildEvent>
+      <Command>rem Copy ssleay32.dll and libeay32.dll from openssl lib directory to output directory
+
+CALL:copyChanged "$(openssl_lib)\ssleay32.dll" "$(OUTDIR)\ssleay32.dll"
+CALL:copyChanged "$(openssl_lib)\libeay32.dll" "$(OUTDIR)\libeay32.dll"
+CALL:copyChanged "$(openssl_lib)\ssleay32.pdb" "$(OUTDIR)\ssleay32.pdb" 1
+CALL:copyChanged "$(openssl_lib)\libeay32.pdb" "$(OUTDIR)\libeay32.pdb" 1
+
+GOTO:EOF
+
+:copyChanged
+
+SET SOURCE=%1
+SET TARGET=%2
+
+IF "%3" == "1" IF NOT EXIST %SOURCE% GOTO:EOF
+
+FOR %%i IN (%SOURCE%) DO SET SOURCEDATE=%%~ti
+FOR %%i IN (%TARGET%) DO SET TARGETDATE=%%~ti
+
+IF "%SOURCEDATE%"=="%TARGETDATE%" GOTO:EOF
+copy /B /Y %SOURCE% %TARGET%
+IF ERRORLEVEL 1 (
+  echo Could not copy %SOURCE% to %TARGET%
+  EXIT 1
+)
+
+GOTO:EOF
+</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Accounts.cpp" />
+    <ClCompile Include="AdminInterface.cpp" />
+    <ClCompile Include="AdminListenSocket.cpp" />
+    <ClCompile Include="AdminSocket.cpp" />
+    <ClCompile Include="AsyncSocketEx.cpp" />
+    <ClCompile Include="AsyncSocketExLayer.cpp" />
+    <ClCompile Include="AsyncSslSocketLayer.cpp" />
+    <ClCompile Include="autobanmanager.cpp" />
+    <ClCompile Include="ControlSocket.cpp" />
+    <ClCompile Include="conversion.cpp" />
+    <ClCompile Include="ExternalIpCheck.cpp" />
+    <ClCompile Include="FileLogger.cpp" />
+    <ClCompile Include="hash_thread.cpp" />
+    <ClCompile Include="iputils.cpp" />
+    <ClCompile Include="ListenSocket.cpp" />
+    <ClCompile Include="misc\dll.cpp" />
+    <ClCompile Include="misc\md5.cpp" />
+    <ClCompile Include="MFC64bitFix.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Permissions.cpp" />
+    <ClCompile Include="Server.cpp" />
+    <ClCompile Include="ServerThread.cpp" />
+    <ClCompile Include="Service.cpp" />
+    <ClCompile Include="SpeedLimit.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Thread.cpp" />
+    <ClCompile Include="tinyxml\tinystr.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxml.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxmlerror.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxmlparser.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TransferSocket.cpp" />
+    <ClCompile Include="version.cpp" />
+    <ClCompile Include="xml_utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FileZilla server.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Accounts.h" />
+    <ClInclude Include="AdminInterface.h" />
+    <ClInclude Include="AdminListenSocket.h" />
+    <ClInclude Include="AdminSocket.h" />
+    <ClInclude Include="AsyncSocketEx.h" />
+    <ClInclude Include="AsyncSocketExLayer.h" />
+    <ClInclude Include="AsyncSslSocketLayer.h" />
+    <ClInclude Include="autobanmanager.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="ControlSocket.h" />
+    <ClInclude Include="conversion.h" />
+    <ClInclude Include="defs.h" />
+    <ClInclude Include="ExternalIpCheck.h" />
+    <ClInclude Include="FileLogger.h" />
+    <ClInclude Include="hash_thread.h" />
+    <ClInclude Include="iputils.h" />
+    <ClInclude Include="ListenSocket.h" />
+    <ClInclude Include="MFC64bitFix.h" />
+    <ClInclude Include="misc\dll.h" />
+    <ClInclude Include="OptionLimits.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="OptionTypes.h" />
+    <ClInclude Include="Permissions.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Server.h" />
+    <ClInclude Include="ServerThread.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="Thread.h" />
+    <ClInclude Include="TransferSocket.h" />
+    <ClInclude Include="version.h" />
+    <ClInclude Include="xml_utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\empty.ico" />
+    <Image Include="res\FileZilla server.ico" />
+    <Image Include="res\green.ico" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\red.ico" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\yellow.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

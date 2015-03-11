@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>FileZilla Server Interface</ProjectName>
+    <ProjectGuid>{516E796E-D29F-4340-9327-FACC9E45C828}</ProjectGuid>
+    <RootNamespace>FZS Interface</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\Dependencies.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>E:\ftp\openssl\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\ftp\openssl\libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FileZilla Server Interface.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>Shlwapi.lib;version.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <DataExecutionPrevention />
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/FileZilla Server Interface.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>Shlwapi.lib;version.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <DataExecutionPrevention />
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Accounts.cpp" />
+    <ClCompile Include="..\misc\dll.cpp" />
+    <ClCompile Include="AdminSocket.cpp" />
+    <ClCompile Include="..\AsyncSocketEx.cpp" />
+    <ClCompile Include="..\AsyncSocketExLayer.cpp" />
+    <ClCompile Include="..\AsyncSslSocketLayer.cpp" />
+    <ClCompile Include="misc\BrowseForFolder.cpp" />
+    <ClCompile Include="ConnectDialog.cpp" />
+    <ClCompile Include="..\conversion.cpp" />
+    <ClCompile Include="DeleteGroupInUseDlg.cpp" />
+    <ClCompile Include="EnterSomething.cpp" />
+    <ClCompile Include="FileZilla server.cpp" />
+    <ClCompile Include="GenerateCertificateDlg.cpp" />
+    <ClCompile Include="GroupsDlg.cpp" />
+    <ClCompile Include="GroupsDlgGeneral.cpp" />
+    <ClCompile Include="GroupsDlgIpFilter.cpp" />
+    <ClCompile Include="GroupsDlgSharedFolders.cpp" />
+    <ClCompile Include="GroupsDlgSpeedLimit.cpp" />
+    <ClCompile Include="misc\HyperLink.cpp" />
+    <ClCompile Include="..\iputils.cpp" />
+    <ClCompile Include="misc\Led.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="..\misc\md5.cpp" />
+    <ClCompile Include="NewUserDlg.cpp" />
+    <ClCompile Include="OfflineAskDlg.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="OptionsAdminInterfacePage.cpp" />
+    <ClCompile Include="OptionsAutobanPage.cpp" />
+    <ClCompile Include="OptionsCompressionPage.cpp" />
+    <ClCompile Include="OptionsDlg.cpp" />
+    <ClCompile Include="OptionsGeneralIpbindingsPage.cpp" />
+    <ClCompile Include="OptionsGeneralPage.cpp" />
+    <ClCompile Include="OptionsGeneralWelcomemessagePage.cpp" />
+    <ClCompile Include="OptionsIpFilterPage.cpp" />
+    <ClCompile Include="OptionsLoggingPage.cpp" />
+    <ClCompile Include="OptionsMiscPage.cpp" />
+    <ClCompile Include="OptionsPage.cpp" />
+    <ClCompile Include="OptionsPasvPage.cpp" />
+    <ClCompile Include="OptionsSecurityPage.cpp" />
+    <ClCompile Include="OptionsSpeedLimitPage.cpp" />
+    <ClCompile Include="OptionsSslPage.cpp" />
+    <ClCompile Include="OutputFormat.cpp" />
+    <ClCompile Include="misc\SAPrefsDialog.cpp" />
+    <ClCompile Include="misc\SAPrefsStatic.cpp" />
+    <ClCompile Include="misc\SAPrefsSubDlg.cpp" />
+    <ClCompile Include="misc\SBDestination.cpp" />
+    <ClCompile Include="..\SpeedLimit.cpp" />
+    <ClCompile Include="SpeedLimitRuleDlg.cpp" />
+    <ClCompile Include="splitex.cpp" />
+    <ClCompile Include="StatusCtrl.cpp" />
+    <ClCompile Include="StatusView.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="misc\SystemTray.cpp" />
+    <ClCompile Include="..\tinyxml\tinystr.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\tinyxml\tinyxml.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\tinyxml\tinyxmlerror.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\tinyxml\tinyxmlparser.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="UsersDlg.cpp" />
+    <ClCompile Include="UsersDlgGeneral.cpp" />
+    <ClCompile Include="UsersDlgIpFilter.cpp" />
+    <ClCompile Include="UsersDlgSharedFolders.cpp" />
+    <ClCompile Include="UsersDlgSpeedLimit.cpp" />
+    <ClCompile Include="UsersListCtrl.cpp" />
+    <ClCompile Include="UsersView.cpp" />
+    <ClCompile Include="..\version.cpp" />
+    <ClCompile Include="..\xml_utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FileZilla server.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Accounts.h" />
+    <ClInclude Include="..\misc\dll.h" />
+    <ClInclude Include="AdminSocket.h" />
+    <ClInclude Include="..\AsyncSocketEx.h" />
+    <ClInclude Include="..\AsyncSocketExLayer.h" />
+    <ClInclude Include="..\AsyncSslSocketLayer.h" />
+    <ClInclude Include="misc\BrowseForFolder.h" />
+    <ClInclude Include="ConnectDialog.h" />
+    <ClInclude Include="..\conversion.h" />
+    <ClInclude Include="DeleteGroupInUseDlg.h" />
+    <ClInclude Include="EnterSomething.h" />
+    <ClInclude Include="FileZilla server.h" />
+    <ClInclude Include="GenerateCertificateDlg.h" />
+    <ClInclude Include="GroupsDlg.h" />
+    <ClInclude Include="GroupsDlgGeneral.h" />
+    <ClInclude Include="GroupsDlgIpFilter.h" />
+    <ClInclude Include="GroupsDlgSharedFolders.h" />
+    <ClInclude Include="GroupsDlgSpeedLimit.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="..\misc\md5.h" />
+    <ClInclude Include="NewUserDlg.h" />
+    <ClInclude Include="OfflineAskDlg.h" />
+    <ClInclude Include="..\OptionLimits.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="OptionsAdminInterfacePage.h" />
+    <ClInclude Include="OptionsAutobanPage.h" />
+    <ClInclude Include="OptionsCompressionPage.h" />
+    <ClInclude Include="OptionsDlg.h" />
+    <ClInclude Include="OptionsGeneralIpbindingsPage.h" />
+    <ClInclude Include="OptionsGeneralPage.h" />
+    <ClInclude Include="OptionsGeneralWelcomemessagePage.h" />
+    <ClInclude Include="OptionsIpFilterPage.h" />
+    <ClInclude Include="OptionsLoggingPage.h" />
+    <ClInclude Include="OptionsMiscPage.h" />
+    <ClInclude Include="OptionsPage.h" />
+    <ClInclude Include="OptionsPasvPage.h" />
+    <ClInclude Include="OptionsSecurityPage.h" />
+    <ClInclude Include="OptionsSpeedLimitPage.h" />
+    <ClInclude Include="OptionsSslPage.h" />
+    <ClInclude Include="OutputFormat.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="misc\SBDestination.h" />
+    <ClInclude Include="..\serverstates.h" />
+    <ClInclude Include="..\SpeedLimit.h" />
+    <ClInclude Include="SpeedLimitRuleDlg.h" />
+    <ClInclude Include="splitex.h" />
+    <ClInclude Include="StatusCtrl.h" />
+    <ClInclude Include="StatusView.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="UsersDlg.h" />
+    <ClInclude Include="UsersDlgGeneral.h" />
+    <ClInclude Include="UsersDlgIpFilter.h" />
+    <ClInclude Include="UsersDlgSharedFolders.h" />
+    <ClInclude Include="UsersDlgSpeedLimit.h" />
+    <ClInclude Include="UsersListCtrl.h" />
+    <ClInclude Include="UsersView.h" />
+    <ClInclude Include="..\version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\certificate.ico" />
+    <Image Include="res\donate.bmp" />
+    <Image Include="res\down.ico" />
+    <Image Include="res\empty.ico" />
+    <Image Include="res\FileZilla server.ico" />
+    <Image Include="res\green.ico" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\leds.bmp" />
+    <Image Include="res\red.ico" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\transfer_modes.bmp" />
+    <Image Include="res\unknown.ico" />
+    <Image Include="res\up.ico" />
+    <Image Include="res\userlisttoolbar.bmp" />
+    <Image Include="res\yellow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\FileZilla server.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="res\manifest.xml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="FileZilla server.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
