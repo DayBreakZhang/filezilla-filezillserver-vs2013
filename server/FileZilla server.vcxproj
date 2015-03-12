@@ -37,12 +37,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>E:\ftp\zlib\lib;E:\ftp\openssl\libs;$(LibraryPath)</LibraryPath>
-    <IncludePath>E:\ftp\zlib\include;E:\ftp\openssl\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(zlib_lib_debug);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(zlib_include);$(openssl_include);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(zlib_lib_debug);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(zlib_include);$(openssl_include);E:\DayBreakZcs\filezilla-filezillserver-vs2013\openssl\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -72,8 +72,8 @@
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Windows</SubSystem>
       <DataExecutionPrevention />
-      <AdditionalDependencies>version.lib;ws2_32.lib;zlibwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>E:\ftp\zlib\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlibstat.lib;version.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:\DayBreakZcs\filezilla-filezillserver-vs2013\zlib\lib\d;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent />
     <PreBuildEvent />
@@ -146,6 +146,7 @@ EXIT 0</Command>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile />
     <Link>
@@ -157,7 +158,8 @@ EXIT 0</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/SAFESEH:NO /NODEFAULTLIB:library %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>E:\DayBreakZcs\filezilla-filezillserver-vs2013\zlib\lib\r;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>rem Copy ssleay32.dll and libeay32.dll from openssl lib directory to output directory

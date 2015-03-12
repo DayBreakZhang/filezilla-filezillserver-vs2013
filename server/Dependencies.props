@@ -2,11 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <zlib_include>../zlib/include</zlib_include>
-    <zlib_lib_debug>../zlib/lib</zlib_lib_debug>
-    <zlib_lib_release>../zlib/lib</zlib_lib_release>
-    <openssl_include>../openssl/include</openssl_include>
-    <openssl_lib>./openssl/libs</openssl_lib>
+    <zlib_include>E:\DayBreakZcs\filezilla-filezillserver-vs2013\zlib\include</zlib_include>
+    <zlib_lib_debug>E:\DayBreakZcs\filezilla-filezillserver-vs2013\zlib\lib</zlib_lib_debug>
+    <zlib_lib_release>E:\DayBreakZcs\filezilla-filezillserver-vs2013\zlib\lib</zlib_lib_release>
+    <openssl_include>E:\DayBreakZcs\filezilla-filezillserver-vs2013\openssl\include</openssl_include>
+    <openssl_lib>E:\DayBreakZcs\filezilla-filezillserver-vs2013\openssl\libs</openssl_lib>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />

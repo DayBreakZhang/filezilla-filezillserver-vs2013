@@ -2,12 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <wxwidgets_include>..\..\wxWidgets-3.0.2\include;..\..\wxWidgets-3.0.2\include\msvc</wxwidgets_include>
-    <wxwidgets_lib>..\..\wxWidgets-3.0.2\lib\vc_lib</wxwidgets_lib>
-    <gnutls_include>..\..\gnutls\include</gnutls_include>
-    <gnutls_lib>..\..\gnutls\bin</gnutls_lib>
-    <sqlite3_include>..\..\sqlite-amalgamation-3080803</sqlite3_include>
-    <sqlite3_lib>..\..\sqlite-amalgamation-3080803</sqlite3_lib>
+    <wxwidgets_include>E:\DayBreakZcs\filezilla-filezillserver-vs2013\wxWidgets-3.0.2\include;E:\DayBreakZcs\filezilla-filezillserver-vs2013\wxWidgets-3.0.2\include\msvc</wxwidgets_include>
+    <wxwidgets_lib>E:\DayBreakZcs\filezilla-filezillserver-vs2013\wxWidgets-3.0.2\lib\vc_lib</wxwidgets_lib>
+    <gnutls_include>E:\DayBreakZcs\filezilla-filezillserver-vs2013\gnutls\include</gnutls_include>
+    <gnutls_lib>E:\DayBreakZcs\filezilla-filezillserver-vs2013\gnutls\bin</gnutls_lib>
+    <sqlite3_include>E:\DayBreakZcs\filezilla-filezillserver-vs2013\sqlite-amalgamation-3080803</sqlite3_include>
+    <sqlite3_lib>E:\DayBreakZcs\filezilla-filezillserver-vs2013\sqlite-amalgamation-3080803</sqlite3_lib>
   </PropertyGroup>
   <PropertyGroup>
     <IncludePath>$(wxwidgets_include);$(gnutls_include);$(sqlite3_include);$(IncludePath)</IncludePath>

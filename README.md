@@ -61,6 +61,7 @@ filezilla server所依赖的工程
                   说明和编译
 
                            1.这个可以自己编译
+                           2.注意zlib的c/c++代码生成中的运行库是mt/md是否和filezilla中的相同
 
             2.openss
 
